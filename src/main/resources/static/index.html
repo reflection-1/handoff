@@ -1,0 +1,143 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>handoff — shift notes that stay clear</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <main class="page-shell">
+      <header class="page-header">
+        <div>
+          <p class="eyebrow">a shift continuity project</p>
+          <h1>handoff</h1>
+          <p class="intro">clear notes for whoever picks up next.</p>
+        </div>
+        <div class="header-actions">
+          <span class="data-label">fictional demo data</span>
+          <button id="newHandoffButton" class="primary-button" type="button">+ new handoff</button>
+        </div>
+      </header>
+
+      <section class="project-note" aria-label="About this project">
+        <div>
+          <p class="eyebrow">the problem</p>
+          <h2>important context should not disappear between shifts.</h2>
+        </div>
+        <p>handoff keeps unfinished work, ownership and status changes in one place, with a small history trail so the next person can see what already happened.</p>
+      </section>
+
+      <section class="metric-grid" aria-label="Handoff metrics">
+        <article class="metric-card"><span>total notes</span><strong id="totalMetric">-</strong></article>
+        <article class="metric-card"><span>still new</span><strong id="newMetric">-</strong></article>
+        <article class="metric-card"><span>high priority open</span><strong id="highMetric">-</strong></article>
+        <article class="metric-card"><span>completed</span><strong id="doneMetric">-</strong></article>
+      </section>
+
+      <section class="workspace">
+        <div class="workspace-header">
+          <div>
+            <p class="eyebrow">shift board</p>
+            <h2>what is being passed on</h2>
+          </div>
+          <p id="resultCount" class="result-count"></p>
+        </div>
+
+        <div class="filters" aria-label="Handoff filters">
+          <label>search
+            <input id="queryFilter" type="search" placeholder="try printer, stockroom or maya" />
+          </label>
+          <label>priority
+            <select id="priorityFilter">
+              <option value="">all priorities</option>
+              <option value="HIGH">high</option>
+              <option value="MEDIUM">medium</option>
+              <option value="LOW">low</option>
+            </select>
+          </label>
+          <label>shift
+            <select id="shiftFilter">
+              <option value="">all shifts</option>
+              <option value="OPENING">opening</option>
+              <option value="MID">mid</option>
+              <option value="CLOSING">closing</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="board" id="handoffBoard">
+          <section class="board-column" aria-labelledby="newHeading">
+            <div class="column-heading"><h3 id="newHeading">new</h3><span id="newCount">0</span></div>
+            <div id="newItems" class="card-stack"></div>
+          </section>
+          <section class="board-column" aria-labelledby="ackHeading">
+            <div class="column-heading"><h3 id="ackHeading">acknowledged</h3><span id="ackCount">0</span></div>
+            <div id="ackItems" class="card-stack"></div>
+          </section>
+          <section class="board-column" aria-labelledby="doneHeading">
+            <div class="column-heading"><h3 id="doneHeading">done</h3><span id="doneCount">0</span></div>
+            <div id="doneItems" class="card-stack"></div>
+          </section>
+        </div>
+      </section>
+    </main>
+
+    <dialog id="handoffDialog" class="app-dialog">
+      <form id="handoffForm">
+        <div class="dialog-heading">
+          <div><p class="eyebrow">new handoff</p><h2>what should the next shift know?</h2></div>
+          <button class="icon-button" data-close-dialog="handoffDialog" type="button" aria-label="close">×</button>
+        </div>
+        <p class="dialog-note">use fictional details only. this saves to your local database.</p>
+
+        <label>title
+          <input name="title" maxlength="100" required placeholder="e.g. pickup order needs a second check" />
+        </label>
+        <label>details
+          <textarea name="details" maxlength="500" required placeholder="what happened, what was already tried, and what is still needed?"></textarea>
+        </label>
+        <div class="form-row">
+          <label>area
+            <input name="area" maxlength="40" required placeholder="e.g. online orders" />
+          </label>
+          <label>owner
+            <input name="owner" maxlength="60" required placeholder="e.g. sara" />
+          </label>
+        </div>
+        <div class="form-row">
+          <label>shift
+            <select name="shiftType" required>
+              <option value="">choose one</option>
+              <option value="OPENING">opening</option><option value="MID">mid</option><option value="CLOSING">closing</option>
+            </select>
+          </label>
+          <label>priority
+            <select name="priority" required>
+              <option value="">choose one</option>
+              <option value="HIGH">high</option><option value="MEDIUM">medium</option><option value="LOW">low</option>
+            </select>
+          </label>
+        </div>
+
+        <p id="formMessage" class="form-message" role="status"></p>
+        <div class="dialog-actions">
+          <button class="quiet-button" data-close-dialog="handoffDialog" type="button">never mind</button>
+          <button class="primary-button" type="submit">add handoff</button>
+        </div>
+      </form>
+    </dialog>
+
+    <dialog id="historyDialog" class="app-dialog history-dialog">
+      <div class="dialog-body">
+        <div class="dialog-heading">
+          <div><p class="eyebrow">activity history</p><h2 id="historyTitle">handoff history</h2></div>
+          <button class="icon-button" data-close-dialog="historyDialog" type="button" aria-label="close">×</button>
+        </div>
+        <div id="historyItems" class="history-list"></div>
+      </div>
+    </dialog>
+
+    <script src="app.js"></script>
+  </body>
+</html>
