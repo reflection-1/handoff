@@ -4,8 +4,6 @@ Important context often disappears between shifts. **handoff** is a small full-s
 
 The scenario is inspired by familiar retail and student-team workflows, but every name and handoff in the demo is fictional.
 
-The interface also brings in interaction-design ideas from SIAT: scannable hierarchy, visible system status, distinct workflow states and accessible feedback.
-
 ## what it does
 
 - creates structured shift-handoff notes with an area, owner, shift and priority
@@ -71,9 +69,3 @@ Supported query parameters for `GET /api/handoffs` are `status`, `priority`, `sh
 **the dataset is fictional.** The project demonstrates a realistic workflow without exposing customer, employee or employer information.
 
 **the visual direction supports the workflow.** A cool, tactile kanban layout makes each state feel distinct without relying on colour alone. The faded workspace photograph is by [Walter Randlehoff on Unsplash](https://unsplash.com/photos/book-beside-laptop-computer-2QRq_eSzdgQ) and is used under the Unsplash licence.
-
-## how i would explain it
-
-I built handoff around a communication problem I had seen in shift-based and collaborative work: unfinished tasks can lose their context when ownership changes. I modelled the workflow as explicit states, added validation around allowed transitions, and stored a separate audit trail so the application shows both the current state and how it got there.
-
-Before listing this project on a résumé, I should be able to explain the controller-service-repository structure, the database entities, the status-transition rule, and at least one integration test in my own words.
