@@ -4,6 +4,8 @@ Important context often disappears between shifts. **handoff** is a small full-s
 
 The scenario is inspired by familiar retail and student-team workflows, but every name and handoff in the demo is fictional.
 
+The interface also brings in interaction-design ideas from SIAT: scannable hierarchy, visible system status, distinct workflow states and accessible feedback.
+
 ## what it does
 
 - creates structured shift-handoff notes with an area, owner, shift and priority
@@ -67,6 +69,8 @@ Supported query parameters for `GET /api/handoffs` are `status`, `priority`, `sh
 **the interface and API fail clearly.** Validation errors identify the affected fields, and the browser checks that responses are actually JSON before trying to parse them.
 
 **the dataset is fictional.** The project demonstrates a realistic workflow without exposing customer, employee or employer information.
+
+**the visual direction supports the workflow.** A cool, tactile kanban layout makes each state feel distinct without relying on colour alone. The faded workspace photograph is by [Walter Randlehoff on Unsplash](https://unsplash.com/photos/book-beside-laptop-computer-2QRq_eSzdgQ) and is used under the Unsplash licence.
 
 ## how i would explain it
 
